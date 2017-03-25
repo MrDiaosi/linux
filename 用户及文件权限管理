@@ -1,0 +1,34 @@
+创建删除用户
+      1.查看当前用户：whoami 
+          参数	说明
+          -a	打印能打印的全部
+          -d	打印死掉的进程
+          -m	同am i,mom likes
+          -q	打印当前登录用户数及用户名
+          -u	打印当前登录用户登录信息
+          -r	打印运行等级
+      2.root为最高权限用户，创建用户需要用sudo命令，使用这个命令需要知道当前登录用户密码，当前用户要在sudo用户组
+        sudo adduser user_name //创建新用户，会提示输入密码，不在sudo用户组中用户无法使用sudo命令
+          useradd与adduser的区别是前者创建用户就返回，再用passwd taoliu创建密码，而adduser完成一系列操作，密码文件夹等
+        sudo deluser user_name --remove-home//删除用户
+        ls /home  //会列出当前所有以用户名命名的用户文件夹
+
+        su <user>可以切换到用户user，执行时需要输入目标用户的密码
+        sudo <cmd>可以以特权级别运行cmd命令，需要当前用户属于sudo组，且需要输入当前用户密码。
+        su - <user>命令也是切换用户，同时环境变量也会跟着改变成目标用户的环境变量
+用户组（每个用户都有一个归属，即用户组，同一用户组用户共享一些资源和权限，也拥有自己的私有资源。一个用户可有多个用户组）
+      1.查看属于用户组
+        groups user_name 
+          liutao : liutao //冒号之前表示用户，后面表示该用户所属的用户组。新建用户如果不指定用户组，默认会自动创建一个与用户名相同的用户组
+        cat /etc/group | sort  //这里cat命令用于读取指定文件的内容并打印到终端输出。 | sort 表示将读取的文本进行一个字典排序再输出
+          liutao:x:1000://分别是 group_name:password:GID:user_list,x表示密码不可见
+      2.添加用户组usermod
+          usermod命令可以为用户添加用户组，可直接使用root用户为其它用户添加用户组，或者用其它已经在sudo用户组的用户使用sudo命令获取权限来执行该命令
+        su liutao//在sudo用户组，需输入密码
+        sudo usermod -G sudo dajiji//把dajiji用户添加至sudo用户组
+  
+文件权限设置
+  每个文件的三组权限（拥有者，所属用户组，其他用户，顺序一定）就对应这一个 "rwx"，也就是一个 '7'
+  chmod 700 jiji //则jiji这个文件只有拥有者能看见
+  chmod go-rw iphone6   //'g''o'还有'u'，分别表示group，others，user，'+'，'-' 就分别表示增加和去掉相应的权限。
+  
