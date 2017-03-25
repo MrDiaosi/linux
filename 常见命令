@@ -8,6 +8,10 @@
 {string1,string2,...}	匹配 string1 或 string2 (或更多)其一字符串
 {c1..c2}	匹配 c1-c2 中全部字符 如{1..10}
 
+
+cat 于读取指定文件的内容并打印到终端输出
+ls 列出文件 //ls *.txt 列出txt文档
+ll详细列出文件各项信息 ll jiji.txt 列出jiji.txt的各项信息
 Ctrl+d	键盘输入结束或退出终端
 Ctrl+s	暂停当前程序，暂停后按下任意键恢复运行
 Ctrl+z	将当前程序放到后台运行，恢复到前台为命令fg
